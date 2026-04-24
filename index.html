@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Атмосфера — организация красивых событий без хаоса</title>
-  <meta name="description" content="Атмосфера — организация свадеб, юбилеев, корпоративов и частных торжеств в Тюмени. Красивое событие без хаоса, нервов и перегруза." />
+  <title>Атмосфера — премиальная организация свадеб, юбилеев и частных событий в Тюмени</title>
+  <meta name="description" content="Атмосфера — премиальная организация свадеб, юбилеев и частных событий в Тюмени. Авторские свадьбы под ключ: концепция, эстетика, координация и безупречная реализация без хаоса и стресса." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -276,15 +276,37 @@
       position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden;
       clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
     }
+
+    .hero-proof {
+      display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .85rem; margin-top: var(--space-8);
+    }
+    .proof-card {
+      padding: 1rem; border-radius: var(--radius-lg); background: color-mix(in srgb, var(--color-surface) 86%, white);
+      border: 1px solid var(--color-border); box-shadow: var(--shadow-sm);
+    }
+    .proof-card strong { display:block; margin-bottom: .35rem; color: var(--color-text); font-size: var(--text-sm); }
+    .proof-card span { color: var(--color-muted); font-size: var(--text-sm); }
+    .portfolio-item.featured {
+      grid-column: span 2;
+    }
+    .portfolio-photo.tall { aspect-ratio: 16 / 10; }
+    .sticky-cta {
+      position: fixed; left: 1rem; right: 1rem; bottom: 1rem; z-index: 50; display: none;
+      padding: .8rem .95rem; border-radius: var(--radius-full); background: color-mix(in srgb, var(--color-surface) 92%, white);
+      border: 1px solid var(--color-border); box-shadow: var(--shadow-md); backdrop-filter: blur(18px); align-items: center; justify-content: space-between; gap: .8rem;
+    }
+    .sticky-cta span { font-size: var(--text-sm); color: var(--color-text); }
+
     .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
     @media (max-width: 980px) {
-      .hero-grid, .about-layout, .cta-wrap, .grid-3, .testimonials { grid-template-columns: 1fr; }
+      .hero-grid, .about-layout, .cta-wrap, .grid-3, .testimonials, .hero-proof { grid-template-columns: 1fr; }
       .grid-2, .hero-bottom-grid, .hero-note, .form-grid { grid-template-columns: 1fr; }
       .nav-links, .nav-right .contact-link { display: none; }
       .burger { display: inline-grid; }
       h1 { max-width: 13ch; }
       .hero-visual { min-height: auto; }
+      .portfolio-item.featured { grid-column: span 1; }
     }
     @media (max-width: 640px) {
       .container { width: min(calc(100% - 1.1rem), var(--content)); }
@@ -293,6 +315,8 @@
       .btn { width: 100%; }
       .hero-actions .btn { width: auto; flex: 1 1 100%; }
       .contact-row { flex-direction: column; align-items: stretch; }
+      .sticky-cta { display: flex; }
+      body { padding-bottom: 5.5rem; }
     }
   </style>
 </head>
@@ -307,12 +331,12 @@
         </svg>
         <span class="brand-name">
           <strong>Атмосфера</strong>
-          <span>event agency</span>
+          <span>premium event agency</span>
         </span>
       </a>
       <nav class="nav-links" aria-label="Основная навигация">
         <a href="#about">О нас</a>
-        <a href="#services">Направления</a>
+        <a href="#services">Услуги</a>
         <a href="#portfolio">Проекты</a>
         <a href="#process">Как работаем</a>
         <a href="#faq">FAQ</a>
@@ -330,12 +354,12 @@
     </div>
     <div class="mobile-panel" data-mobile-panel>
       <a href="#about">О нас</a>
-      <a href="#services">Направления</a>
+      <a href="#services">Услуги</a>
       <a href="#portfolio">Проекты</a>
       <a href="#process">Как работаем</a>
       <a href="#faq">FAQ</a>
       <a href="#contacts">Контакты</a>
-      <a class="btn btn-primary" href="#estimate">Рассчитать стоимость</a>
+      <a class="btn btn-primary" href="#estimate">Обсудить событие</a>
     </div>
   </header>
 
@@ -343,16 +367,21 @@
     <section class="hero">
       <div class="container hero-grid">
         <div class="hero-copy reveal">
-          <span class="eyebrow">Тюмень · свадьбы · юбилеи · корпоративы</span>
-          <h1>Атмосфера для тех, кто хочет красивое событие без хаоса.</h1>
-          <p class="lead">Берём на себя подготовку и координацию свадьбы, юбилея, корпоратива или частного торжества, чтобы вы могли спокойно прожить этот день, а не управлять им.</p>
+          <span class="eyebrow">Тюмень · премиальные свадьбы · premium event agency</span>
+          <h1>Премиальные события, в которых красота сочетается со спокойной организацией.</h1>
+          <p class="lead">Организуем свадьбы, юбилеи, private events и корпоративные события в Тюмени: от идеи и визуальной концепции до точной координации дня, чтобы вы проживали событие как его главный герой, а не как человек, который всё тащит на себе.</p>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="#estimate">Рассчитать стоимость</a>
+            <a class="btn btn-primary" href="#estimate">Обсудить событие</a>
             <a class="btn btn-secondary" href="#portfolio">Посмотреть проекты</a>
           </div>
           <div class="contact-row">
             <a class="contact-pill" href="tel:89292692517">Телефон: 8 929 269-25-17</a>
             <a class="contact-pill" href="https://t.me/KetrinPeil" target="_blank" rel="noopener noreferrer">Telegram: @KetrinPeil</a>
+          </div>
+          <div class="hero-proof reveal" style="transition-delay:.16s;">
+            <div class="proof-card"><strong>Авторский подход</strong><span>Каждое событие собирается под характер клиента и формат, а не по шаблону.</span></div>
+            <div class="proof-card"><strong>Цельная организация</strong><span>Концепция, команда, тайминг и сервис работают как одна система.</span></div>
+            <div class="proof-card"><strong>Премиальный тон</strong><span>Без показной роскоши — с чувством меры, вкусом и взрослой коммуникацией для разных форматов.</span></div>
           </div>
         </div>
 
@@ -360,28 +389,28 @@
           <div class="hero-visual" aria-label="Визуальный блок сайта Атмосфера">
             <div class="photo-main">
               <div class="photo-caption">
-                <strong>Собираем событие целиком</strong>
-                <span>Концепция, площадка, подрядчики, координация, финальные детали.</span>
+                <strong>Собираем событие как цельную историю</strong>
+                <span>Концепция, площадка, команда, эстетика и контроль деталей в одной системе.</span>
               </div>
             </div>
             <div class="hero-bottom-grid">
               <div class="photo-small">
                 <div class="photo-caption">
-                  <strong>Спокойная подготовка</strong>
-                  <span>Понятный процесс без суеты.</span>
+                  <strong>Подготовка без перегруза</strong>
+                  <span>Чёткие этапы, бережная коммуникация и понятные решения.</span>
                 </div>
               </div>
               <div class="photo-small">
                 <div class="photo-caption">
-                  <strong>Аккуратная подача</strong>
-                  <span>Красиво не только на фото, но и в организации.</span>
+                  <strong>Эстетика без показной роскоши</strong>
+                  <span>Красиво в кадре, в атмосфере и в каждом организационном решении.</span>
                 </div>
               </div>
             </div>
             <div class="hero-note">
-              <div class="mini-card"><strong>Под ключ</strong><span>От идеи до финального тайминга.</span></div>
-              <div class="mini-card"><strong>Живой сервис</strong><span>Без бесконечных согласований.</span></div>
-              <div class="mini-card"><strong>Тюмень</strong><span>С прицелом на рост и масштабирование.</span></div>
+              <div class="mini-card"><strong>Под ключ</strong><span>От первой идеи до финального акцента в свадебном дне.</span></div>
+              <div class="mini-card"><strong>Деликатный сервис</strong><span>Без хаоса, навязчивости и бесконечных переписок.</span></div>
+              <div class="mini-card"><strong>Тюмень</strong><span>Для клиентов, которым важны вкус, спокойствие и уровень сервиса.</span></div>
             </div>
           </div>
         </div>
@@ -392,9 +421,9 @@
       <div class="container about-layout">
         <div class="reveal">
           <div class="section-head">
-            <span class="eyebrow">О бренде</span>
-            <h2>Спокойная организация, в которой всё на своём месте.</h2>
-            <p>«Атмосфера» — это студия организации событий в Тюмени для тех, кому важно не просто провести праздник, а пройти подготовку без перегруза, лишней суеты и ощущения, что всё держится только на вас.</p>
+            <span class="eyebrow">О подходе</span>
+            <h2>Мы собираем не просто красивое событие, а день, в котором всё работает на вас.</h2>
+            <p>«Атмосфера» — премиальное event-агентство для клиентов, которым важны эстетика, точность и деликатный сервис. Свадьбы — наше флагманское направление, но мы также берём в работу юбилеи, private events и корпоративные события, собирая концепцию, команду, коммуникацию с подрядчиками и координацию дня в единую систему.</p>
           </div>
           <div class="grid-2">
             <div class="soft-card">
@@ -423,7 +452,7 @@
     <section class="section" id="services">
       <div class="container">
         <div class="section-head reveal">
-          <span class="eyebrow">Направления</span>
+          <span class="eyebrow">Услуги</span>
           <h2>Собираем разные форматы событий, сохраняя единый уровень внимания.</h2>
           <p>Сайт и подача бренда не привязаны только к свадьбам: важно, чтобы «Атмосфера» одинаково убедительно продавала и семейные торжества, и корпоративные мероприятия.</p>
         </div>
@@ -431,7 +460,7 @@
           <article class="card reveal">
             <h3>Свадьбы</h3>
             <p>Организация свадьбы под ключ: атмосфера дня, площадка, команда, логика тайминга, координация и все мелочи, которые обычно отнимают силы у пары.</p>
-            <div class="service-meta"><span class="chip">Концепция</span><span class="chip">Подрядчики</span><span class="chip">Координация дня</span></div>
+            <div class="service-meta"><span class="chip">Концепция</span><span class="chip">Команда под проект</span><span class="chip">Безупречная реализация</span></div>
           </article>
           <article class="card reveal" style="transition-delay:.05s;">
             <h3>Юбилеи и семейные торжества</h3>
@@ -441,12 +470,12 @@
           <article class="card reveal" style="transition-delay:.1s;">
             <h3>Корпоративы</h3>
             <p>Собранные события для команды и бизнеса: от камерного ужина до корпоративного вечера с понятной организацией и ясной логистикой.</p>
-            <div class="service-meta"><span class="chip">Формат</span><span class="chip">Тайминг</span><span class="chip">Сервис</span></div>
+            <div class="service-meta"><span class="chip">Формат</span><span class="chip">Тайминг</span><span class="chip">Премиальный сервис</span></div>
           </article>
           <article class="card reveal" style="transition-delay:.15s;">
-            <h3>Частные торжества</h3>
+            <h3>Юбилеи и private events</h3>
             <p>Дни рождения, семейные вечера, камерные ужины и другие поводы, где важно сохранить настроение и не превратить подготовку в отдельную работу.</p>
-            <div class="service-meta"><span class="chip">Под ключ</span><span class="chip">Гибкий формат</span><span class="chip">Спокойная коммуникация</span></div>
+            <div class="service-meta"><span class="chip">Под ключ</span><span class="chip">Деликатная коммуникация</span><span class="chip">Спокойная коммуникация</span></div>
           </article>
         </div>
       </div>
@@ -477,12 +506,12 @@
           <p>Ниже — структура под будущие кейсы. Здесь удобно показать формат события, атмосферу, задачу проекта и короткий результат без лишнего текста.</p>
         </div>
         <div class="grid-3">
-          <article class="portfolio-item reveal">
+          <article class="portfolio-item featured reveal">
             <div class="portfolio-photo" data-label="Свадьба"></div>
             <div>
               <h3>Камерная свадьба в тёплых оттенках</h3>
               <p>Небольшой формат с акцентом на атмосферу, тактичный декор и комфорт для гостей.</p>
-              <div class="portfolio-meta"><span class="chip">До 35 гостей</span><span class="chip">Координация</span></div>
+              <div class="portfolio-meta"><span class="chip">До 35 гостей</span><span class="chip">Концепция под формат</span></div>
             </div>
           </article>
           <article class="portfolio-item reveal" style="transition-delay:.05s;">
@@ -592,7 +621,7 @@
           <div class="contact-list">
             <div class="contact-card"><div class="contact-icon">☎</div><div><strong>Телефон</strong><p>8 929 269-25-17</p></div></div>
             <div class="contact-card"><div class="contact-icon">✈</div><div><strong>Telegram</strong><p>@KetrinPeil</p></div></div>
-            <div class="contact-card"><div class="contact-icon">⌂</div><div><strong>Город</strong><p>Тюмень</p></div></div>
+            <div class="contact-card"><div class="contact-icon">⌂</div><div><strong>Город работы</strong><p>Тюмень</p></div></div>
           </div>
         </div>
         <div class="card">
@@ -611,7 +640,7 @@
               </label>
               <label>Тип мероприятия
                 <select name="type">
-                  <option>Свадьба</option>
+                  <option>Свадьба под ключ</option>
                   <option>Юбилей</option>
                   <option>Корпоратив</option>
                   <option>Частное торжество</option>
@@ -668,9 +697,14 @@
   <footer class="footer">
     <div class="container footer-row">
       <div>© Атмосфера · организация красивых событий без хаоса</div>
-      <div><a href="#top">Наверх</a> · <a href="#estimate">Оставить заявку</a></div>
+      <div><a href="#top">Наверх</a> · <a href="#estimate">Обсудить событие</a></div>
     </div>
   </footer>
+  <div class="sticky-cta">
+    <span>Поговорим о вашем событии спокойно и по делу</span>
+    <a class="btn btn-primary" href="#estimate">Оставить заявку</a>
+  </div>
+
 
   <script>
     (function(){
