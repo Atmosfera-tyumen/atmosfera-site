@@ -500,6 +500,19 @@
     .after-request{margin-top:28px;padding-top:8px}
     .after-request h3{font-size:clamp(1.2rem,1rem + .8vw,1.7rem);margin-bottom:18px}
 
+
+    .hero-trust{display:flex;flex-wrap:wrap;gap:10px 12px;margin-top:18px}
+    .hero-trust span{padding:10px 14px;border-radius:999px;background:rgba(255,255,255,.54);border:1px solid rgba(255,255,255,.28);font-size:13px;color:var(--muted)}
+    .scope-list{list-style:none;padding:0;margin:18px 0 0;display:grid;gap:12px}
+    .scope-list li{padding-left:18px;position:relative;color:var(--muted)}
+    .scope-list li::before{content:'•';position:absolute;left:0;top:0;color:var(--accent)}
+    .form-step-indicator{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+    .form-step-indicator span{padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.45);border:1px solid rgba(255,255,255,.28);font-size:13px;color:var(--muted)}
+    .form-step-indicator .is-active{background:rgba(47,92,87,.12);border-color:rgba(47,92,87,.26);color:var(--ink)}
+    .form-step{display:none}
+    .form-step.is-active{display:block}
+    .form-actions-row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+
 </style>
 </head>
 <body>
@@ -835,8 +848,8 @@
       <div class="container cta-wrap reveal">
         <div>
           <span class="eyebrow">Рассчитать стоимость</span>
-          <h2>Расскажите о событии — подготовим ориентир по формату и стоимости.</h2>
-          <p>После заявки мы связываемся с вами, уточняем формат события, задачи и предлагаем понятный следующий шаг. Ответить можем в Telegram или по телефону — как вам удобнее.</p>
+          <h2>Оставьте контакт — дальше спокойно уточним детали и подготовим ориентир по формату и стоимости.</h2>
+          <p>Первый шаг — быстрый контакт. После заявки мы связываемся с вами, задаём несколько уточняющих вопросов и предлагаем понятный следующий шаг. В рабочее время стараемся отвечать максимально быстро.</p>
           <div class="trust-inline reveal">
             <span>Ответим в ближайшее время</span>
             <span>Можно начать с короткого обсуждения идеи</span>
@@ -851,43 +864,55 @@
         <div class="card">
           <form id="contact-form" action="https://formspree.io/f/mnjlwdly" method="POST">
             <input type="hidden" name="_subject" value="Новая заявка с сайта Атмосфера">
-            <div class="form-grid">
-              <label>Имя
-                <input type="text" name="name" placeholder="Как к вам обращаться" required>
-              </label>
-              <label>Телефон
-                <input type="text" name="phone" placeholder="8 9XX XXX-XX-XX" required>
-              </label>
+            <div class="form-step-indicator">
+              <span class="is-active">1. Контакт</span>
+              <span>2. Детали события</span>
             </div>
-            <div class="form-grid">
-              <label>Telegram или удобная связь
-                <input type="text" name="contact" placeholder="@username или WhatsApp">
-              </label>
-              <label>Тип мероприятия
-                <select name="type">
-                  <option>Свадьба под ключ</option>
-                  <option>Юбилей</option>
-                  <option>Корпоратив</option>
-                  <option>Частное торжество</option>
-                  <option>Другое</option>
-                </select>
-              </label>
+            <div class="form-step is-active" data-step="1">
+              <div class="form-grid">
+                <label>Имя
+                  <input type="text" name="name" placeholder="Как к вам обращаться" required>
+                </label>
+                <label>Телефон
+                  <input type="text" name="phone" placeholder="8 9XX XXX-XX-XX" required>
+                </label>
+              </div>
+              <div class="form-grid">
+                <label>Telegram или удобная связь
+                  <input type="text" name="contact" placeholder="@username или WhatsApp">
+                </label>
+                <label>Тип мероприятия
+                  <select name="type">
+                    <option>Свадьба под ключ</option>
+                    <option>Юбилей</option>
+                    <option>Корпоратив</option>
+                    <option>Частное торжество</option>
+                    <option>Другое</option>
+                  </select>
+                </label>
+              </div>
+              <button class="btn btn-secondary step-next" type="button">Продолжить</button>
             </div>
-            <div class="form-grid">
-              <label>Дата мероприятия
-                <input type="text" name="date" placeholder="Например: август 2026">
+            <div class="form-step" data-step="2">
+              <div class="form-grid">
+                <label>Дата мероприятия
+                  <input type="text" name="date" placeholder="Например: август 2026">
+                </label>
+                <label>Количество гостей
+                  <input type="text" name="guests" placeholder="Например: 40–60">
+                </label>
+              </div>
+              <label>Город
+                <input type="text" name="city" placeholder="Тюмень" value="Тюмень">
               </label>
-              <label>Количество гостей
-                <input type="text" name="guests" placeholder="Например: 40–60">
+              <label>Пожелания
+                <textarea name="comment" placeholder="Коротко расскажите о формате, настроении и задачах события"></textarea>
               </label>
+              <div class="form-actions-row">
+                <button class="btn btn-secondary step-back" type="button">Назад</button>
+                <button class="btn btn-primary" type="submit">Отправить заявку</button>
+              </div>
             </div>
-            <label>Город
-              <input type="text" name="city" placeholder="Тюмень" value="Тюмень">
-            </label>
-            <label>Пожелания
-              <textarea name="comment" placeholder="Коротко расскажите о формате, настроении и задачах события"></textarea>
-            </label>
-            <button class="btn btn-primary" type="submit">Отправить заявку</button>
             <p id="success-message" style="display:none; color: var(--color-text); margin: 0;"></p>
           </form>
                 <div class="after-request reveal">
@@ -1001,6 +1026,17 @@
         });
       });
     })();
+
+    const stepIndicators = Array.from(document.querySelectorAll('.form-step-indicator span'));
+    const stepBlocks = Array.from(document.querySelectorAll('.form-step'));
+    const nextBtn = document.querySelector('.step-next');
+    const backBtn = document.querySelector('.step-back');
+    const activateStep = (step) => {
+      stepBlocks.forEach((block, index) => block.classList.toggle('is-active', index + 1 === step));
+      stepIndicators.forEach((item, index) => item.classList.toggle('is-active', index + 1 === step));
+    };
+    nextBtn?.addEventListener('click', () => activateStep(2));
+    backBtn?.addEventListener('click', () => activateStep(1));
 
     const form = document.getElementById('contact-form');
     if (form) {
