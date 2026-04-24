@@ -971,15 +971,15 @@
             headers: { 'Accept': 'application/json' }
           });
           if (response.ok) {
-            message.textContent = 'Спасибо! Заявка отправлена. Новые обращения будут приходить на почту, привязанную к Formspree.';
+            message.textContent = 'Спасибо! Получили вашу заявку. Скоро свяжемся, чтобы обсудить формат события и следующий шаг.';
             message.style.display = 'block';
             form.reset();
           } else {
-            message.textContent = 'Не получилось отправить заявку. Проверьте, подтверждена ли форма в Formspree, и попробуйте ещё раз.';
+            message.textContent = 'Не удалось отправить заявку. Попробуйте ещё раз или напишите нам в Telegram.';
             message.style.display = 'block';
           }
         } catch (error) {
-          message.textContent = 'Ошибка отправки. Чаще всего сначала нужно активировать форму через письмо от Formspree на вашей почте.';
+          message.textContent = 'Пока не получилось отправить заявку через форму. Напишите нам в Telegram — ответим быстрее.';
           message.style.display = 'block';
         }
       });
