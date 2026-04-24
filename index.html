@@ -830,13 +830,14 @@
           </div>
         </div>
         <div class="card">
-          <form onsubmit="event.preventDefault(); showSuccess();">
+          <form id="contact-form" action="https://formspree.io/f/mnjlwdly" method="POST">
+            <input type="hidden" name="_subject" value="Новая заявка с сайта Атмосфера">
             <div class="form-grid">
               <label>Имя
                 <input type="text" name="name" placeholder="Как к вам обращаться" required>
               </label>
               <label>Телефон
-                <input type="tel" name="phone" placeholder="8 9XX XXX-XX-XX" required>
+                <input type="text" name="phone" placeholder="8 9XX XXX-XX-XX" required>
               </label>
             </div>
             <div class="form-grid">
@@ -868,7 +869,7 @@
               <textarea name="comment" placeholder="Коротко расскажите о формате, настроении и задачах события"></textarea>
             </label>
             <button class="btn btn-primary" type="submit">Отправить заявку</button>
-            <p id="success-message" style="display:none; color: var(--color-text); margin: 0;">Спасибо. Заявка отправлена как демо-сценарий для сайта. Для реальной отправки потом подключим Telegram-бота, почту или форму-обработчик.</p>
+            <p id="success-message" style="display:none; color: var(--color-text); margin: 0;"></p>
           </form>
         </div>
       </div>
@@ -956,8 +957,32 @@
       });
     })();
 
-    function showSuccess() {
-      document.getElementById('success-message').style.display = 'block';
+    const form = document.getElementById('contact-form');
+    if (form) {
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const message = document.getElementById('success-message');
+        message.style.display = 'none';
+        const data = new FormData(form);
+        try {
+          const response = await fetch(form.action, {
+            method: 'POST',
+            body: data,
+            headers: { 'Accept': 'application/json' }
+          });
+          if (response.ok) {
+            message.textContent = 'Спасибо! Заявка отправлена. Новые обращения будут приходить на почту, привязанную к Formspree.';
+            message.style.display = 'block';
+            form.reset();
+          } else {
+            message.textContent = 'Не получилось отправить заявку. Проверьте, подтверждена ли форма в Formspree, и попробуйте ещё раз.';
+            message.style.display = 'block';
+          }
+        } catch (error) {
+          message.textContent = 'Ошибка отправки. Чаще всего сначала нужно активировать форму через письмо от Formspree на вашей почте.';
+          message.style.display = 'block';
+        }
+      });
     }
   </script>
 </body>
